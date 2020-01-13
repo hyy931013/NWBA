@@ -6,19 +6,23 @@ using System.Data.SqlClient;
 
 namespace NWBA.Service
 {
-    public class TransactionService
+    public static class TransactionService
     {
-        private string connectionString; 
-        public TransactionService(IConfiguration configuration)
+        public static void AddTransaction(Transaction transaction, SqlConnection connection)
         {
-            connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            string sql = "INSERT INTO[dbo].[Transaction] ([TransactionType],[AccountNumber],[DestinationAccountNumber],[Amount] ,[Comment],[TransactionTimeUtc])"
+            + $"VALUES ({transaction.TransactionType},{transaction.AccountNumber},{transaction.DestinationAccountNumber},{transaction.Amount},{transaction.Comment},{transaction.TransactionTimeUtc})";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.ExecuteNonQuery();
+
         }
 
-        public List<Transaction> GetTransactions()
+        public static List<Transaction> GetTransactions(SqlConnection connection)
         {
             List<Transaction> transactions = new List<Transaction>();
 
-            using(SqlConnection connection = new SqlConnection(connectionString))
+            using (connection)
             {
                 //SqlDataReader
                 connection.Open();
@@ -26,7 +30,7 @@ namespace NWBA.Service
                 string sql = "SELECT * FROM Transaction";
                 SqlCommand command = new SqlCommand(sql, connection);
 
-                using(SqlDataReader dataReader = command.ExecuteReader())
+                using (SqlDataReader dataReader = command.ExecuteReader())
                 {
                     while (dataReader.Read())
                     {

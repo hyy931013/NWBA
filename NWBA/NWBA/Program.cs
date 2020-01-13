@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NWBA.Service;
+using System.Data.SqlClient;
 
 namespace NWBA
 {
@@ -6,7 +7,13 @@ namespace NWBA
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var connectionString = "Server=(localdb)\\MYSQLLocalDB;Database=NWBA";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                PreLoadService.LoadCustomersAsync(connection);
+            }
+
         }
+
     }
 }
