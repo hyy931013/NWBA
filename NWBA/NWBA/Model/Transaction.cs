@@ -6,12 +6,12 @@ namespace NWBA.Model
 {
     public class Transaction
     {
-        int TransactionId { get; set; }
-        char TransactionType { get; set; }
-        int AccountNumber { get; set; }
-        int DestinationAccountNumber { get; set; }
-        Decimal Amount { get; set; }
-        string Comment { get; set; }
-        DateTimeOffset TransactionTimUtc { get; set; }
+       public int TransactionId { get; set; }
+       public char TransactionType { get; set; }
+       public int AccountNumber { get; set; }
+       public int DestinationAccountNumber { get; set; }
+       public Decimal Amount { get; set; }
+       public string Comment { get; set; }
+       public DateTimeOffset TransactionTimeUtc { get; set; }
     }
 }

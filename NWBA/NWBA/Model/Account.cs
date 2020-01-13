@@ -4,9 +4,9 @@ namespace NWBA.Model
 {
     public class Account
     {
-        int AccountNumber { get; set; }
-        char AccountType { get; set; }
-        int CustomerId { get; set; }
-        Decimal Balance { get; set; }
+        public int AccountNumber { get; set; }
+        public char AccountType { get; set; }
+        public int CustomerId { get; set; }
+        public Decimal Balance { get; set; }
     }
 }

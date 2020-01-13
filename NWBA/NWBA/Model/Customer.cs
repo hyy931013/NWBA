@@ -2,10 +2,10 @@
 {
     public class Customer
     {
-        int CustomerId { get; set; }
-        string Name { get; set; }
-        string Address { get; set; }
-        string City { get; set; }
-        string PostCode { get; set; }
+        public int CustomerId { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string PostCode { get; set; }
     }
 }
